@@ -42,3 +42,46 @@ let pokemonList = [
     weight: 36.5
   }
 ];
+
+for(i = 0; i < pokemonList.length; i++) {
+  let name = pokemonList[i].name;
+  let type1 = pokemonList[i].types[0];
+  let type2 = pokemonList[i].types[1];
+  let height = pokemonList[i].height;
+  let weight = pokemonList[i].weight
+  let hp = pokemonList[i].baseStats.hp
+  let attack = pokemonList[i].baseStats.attack
+  let defense = pokemonList[i].baseStats.defense
+  let speed = pokemonList[i].baseStats.speed
+  let spAtk = pokemonList[i].baseStats.spAtk
+  let spDef = pokemonList[i].baseStats.spDef
+ 
+  document.write(`<h3 class="${type1}">${name}: <br></h3>`);
+
+  if (pokemonList[i].types.length === 2) {
+    document.write(`Types - ${type1}, ${type2} <br>`)
+  }
+  else {
+    document.write(`Types - ${type1} <br>`)
+  }
+
+  if (height > 1.2){
+    document.write(`Height - ${height}  <p class="size-comment">Wow, that's big!</p> <br>`)
+  }
+  else if (height > .7) {
+    document.write(`Height - ${height}  <p class="size-comment">I'd say that's about average size.</p> <br>`)
+  }
+  else {
+    document.write(`Height - ${height}  <p class="size-comment">That's a really small Pokemon!</p> <br>`)
+  }
+
+  document.write(` Weight - ${weight} <br>
+    Base Stats: <br>
+    <div class="base-stats">HP - ${hp} <br>
+    Attack - ${attack} <br>
+    Defense - ${defense} <br>
+    Speed - ${speed} <br>
+    Special Attack - ${spAtk} <br>
+    Special Defense - ${spDef} <br><br>
+    </div>` );
+}
