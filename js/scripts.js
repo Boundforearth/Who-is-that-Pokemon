@@ -35,7 +35,7 @@ let pokemonList = [
     baseStats: {
       hp: 65,
       attack: 60,
-      defesne: 70,
+      defense: 70,
       speed: 40,
       spAtk: 85,
       spDef: 75
@@ -67,7 +67,7 @@ for(i = 0; i < pokemonList.length; i++) {
     document.write(`Types - ${type1}, ${type2} <br>`)
   }
   else {
-    document.write(`Types - ${type1} <br>`)
+    document.write(`Type - ${type1} <br>`)
   }
 
   //Add a special comment about the Pokemon's height.  1.2+ is large, .7- is small
