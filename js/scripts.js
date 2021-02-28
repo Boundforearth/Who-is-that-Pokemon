@@ -2,13 +2,13 @@ let pokemonList = [
   {
     name: "Clefairy",
     types: ["Fairy"],
-    "base stats": {
+    baseStats: {
       hp: 70,
       attack: 45,
       defense: 48,
       speed: 35,
-      "sp atk": 60,
-      "sp def": 65
+      spAtk: 60,
+      spDef: 65
     },
     height: 0.6,
     weight: 7.5
@@ -16,13 +16,13 @@ let pokemonList = [
   {
     name: "Ghastly",
     types: ["Ghost", "Poison"],
-    "base stats": {
+    baseStats: {
       hp: 30,
       attack: 35,
       defense: 30,
       speed: 80,
-      "sp atk": 100,
-      "sp def": 35
+      spAtk: 100,
+      spDef: 35
     },
     height: 1.3,
     weight: 0.1
@@ -30,13 +30,13 @@ let pokemonList = [
   {
     name: "Porygon",
     types: ["Normal"],
-    "base stats": {
+    baseStats: {
       hp: 65,
       attack: 60,
       defesne: 70,
       speed: 40,
-      "sp atk": 85,
-      "sp def": 75
+      spAtk: 85,
+      spDef: 75
     },
     height: 0.8,
     weight: 36.5
