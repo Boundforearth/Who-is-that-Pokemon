@@ -1,3 +1,5 @@
+
+//Array of Pokemon objects
 let pokemonList = [
   {
     name: "Clefairy",
@@ -43,7 +45,9 @@ let pokemonList = [
   }
 ];
 
+//for loop to run through the array of Pokemon Objects and print the data contained to the website's page
 for(i = 0; i < pokemonList.length; i++) {
+  //Simple variables for all properties
   let name = pokemonList[i].name;
   let type1 = pokemonList[i].types[0];
   let type2 = pokemonList[i].types[1];
@@ -58,6 +62,7 @@ for(i = 0; i < pokemonList.length; i++) {
  
   document.write(`<h3 class="${type1}">${name}: <br></h3>`);
 
+  //Determine whether one or two types, then print text accordingly
   if (pokemonList[i].types.length === 2) {
     document.write(`Types - ${type1}, ${type2} <br>`)
   }
@@ -65,6 +70,8 @@ for(i = 0; i < pokemonList.length; i++) {
     document.write(`Types - ${type1} <br>`)
   }
 
+  //Add a special comment about the Pokemon's height.  1.2+ is large, .7- is small
+  //<p> tag added to create more white space between the height and the comment
   if (height > 1.2){
     document.write(`Height - ${height}  <p class="size-comment">Wow, that's big!</p> <br>`)
   }
@@ -75,6 +82,7 @@ for(i = 0; i < pokemonList.length; i++) {
     document.write(`Height - ${height}  <p class="size-comment">That's a really small Pokemon!</p> <br>`)
   }
 
+  //prints weight and base stats. div added to provide spacing on the left margin
   document.write(` Weight - ${weight} <br>
     Base Stats: <br>
     <div class="base-stats">HP - ${hp} <br>
