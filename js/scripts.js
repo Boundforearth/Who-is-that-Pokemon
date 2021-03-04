@@ -71,13 +71,21 @@ let pokemonRepository = (function() {
 
     else {pokemonList.push(pokemon)};
   }
+  
+
+  function findPokemon(pokemon) {
+    let foundPokemon = pokemonList.filter(element => element.name.toUpperCase() === pokemon.toUpperCase());
+    return foundPokemon;
+    }
+
 
   //return the functions to give access to them
   return {
     getAll: getAll,
     add: add,
+    findPokemon: findPokemon
   };
-})();
+}());
 
 
 //function used to display all aspects of a Pokemon.  To but entered into a forEach loop.
@@ -129,4 +137,3 @@ function displayPokemon(pokemon) {
 }
 
 pokemonRepository.getAll().forEach(displayPokemon);
-
