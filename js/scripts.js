@@ -1,5 +1,5 @@
 
-
+let pokemonRepository = (function() {
   let pokemonList = [
   {
     name: "Clefairy",
@@ -93,4 +93,19 @@
       </div>` );
   }
 
-  pokemonList.forEach(displayPokemon);
+  function getAll() {
+    return pokemonList;
+  }
+
+  function add(pokemon) {
+    pokemonList.push(pokemon);
+  }
+
+  return {
+    getAll: getAll,
+    add: add
+  }
+})();
+
+
+
