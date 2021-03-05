@@ -74,7 +74,9 @@ let pokemonRepository = (function() {
   
 
   function findPokemon(pokemon) {
-    let foundPokemon = pokemonList.filter(element => element.name.toUpperCase() === pokemon.toUpperCase());
+    let foundPokemon = pokemonList.filter(function(element){
+      return element.name.toUpperCase() === pokemon.toUpperCase()
+    });
     return foundPokemon;
     }
 
