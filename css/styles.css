@@ -4,6 +4,21 @@ body {
   line-height: 1.3;
 }
 
+ul {
+  list-style-type: none;
+}
+
+.button {
+  width: 200px;
+  height: 50px;
+  background-color: #aaa;
+  margin: 15px 10px;
+}
+
+.button:hover {
+  background-color: #ddd;
+}
+
 .base-stats {
   margin-left: 20px;
 }
