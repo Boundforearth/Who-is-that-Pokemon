@@ -46,7 +46,90 @@ let pokemonRepository = (function() {
   }
 ];
 
-// function to give access to the pokemonList outside of this IIFE
+  function chooseButtonClass (type) {
+    let newClass;
+    switch (type) {
+      case "Bug":
+        newClass = "bugButton";
+        break;
+      
+      case "Dark":
+        newClass = "darkButton";
+        break;
+
+      case "Dragon":
+        newClass = "dragonButton";
+        break;
+
+      case "Electric":
+        newClass = "electricButton";
+        break;
+        
+      case "Fairy":
+        newClass = "fairyButton";
+        break;
+  
+      case "Fighting":
+        newClass = "fightingButton";
+        break;
+
+      case "Fire":
+        newClass = "fireButton";
+        break;
+          
+      case "Flying":
+        newClass = "flyingButton";
+        break;
+    
+      case "Ghost":
+        newClass = "ghostButton";
+        break;
+
+      case "Grass":
+        newClass = "grassButton";
+        break;
+      
+      case "Ground":
+        newClass = "groundButton";
+        break;
+
+      case "Ice":
+        newClass = "iceButton";
+        break;
+
+      case "Normal":
+        newClass = "normalButton";
+        break;
+      
+      case "Poison":
+        newClass = "poisonButton";
+        break;
+
+      case "Psychic":
+        newClass = "psychicButton";
+        break;
+      
+      case "Rock":
+        newClass = "rockButton";
+        break;
+        
+      case "Steel":
+        newClass = "steelButton";
+        break;
+  
+      case "Water":
+        newClass = "waterButton";
+        break;
+    }
+    return newClass
+  }
+
+  //function to select color of the button
+  function getButtonColor (button, type) {
+    button.classList.add(chooseButtonClass(type));
+  }
+
+  // function to give access to the pokemonList outside of this IIFE
   function getAll() {
     return pokemonList;
   }
@@ -81,34 +164,41 @@ let pokemonRepository = (function() {
     return foundPokemon;
     }
 
+  //function to add event listener to pokemon buttons
+  //"showDetails" function is wrapped in another function to prevent being called immediately
+  function addListener(element, object) {
+    element.addEventListener("click", function() {showDetails(object)});
+  }
+  
+  //some future unknown use
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
+
   function addListItem(pokemon) {
     //varuables for pokemon object
     let name = pokemon.name;
     let type1 = pokemon.types[0];
     let type2 = pokemon.types[1];
     let height = pokemon.height;
-    let weight = pokemon.weight
-    let hp = pokemon.baseStats.hp
-    let attack = pokemon.baseStats.attack
-    let defense = pokemon.baseStats.defense
-    let speed = pokemon.baseStats.speed
-    let spAtk = pokemon.baseStats.spAtk
-    let spDef = pokemon.baseStats.spDef
+    let weight = pokemon.weight;
+    let hp = pokemon.baseStats.hp;
+    let attack = pokemon.baseStats.attack;
+    let defense = pokemon.baseStats.defense;
+    let speed = pokemon.baseStats.speed;
+    let spAtk = pokemon.baseStats.spAtk;
+    let spDef = pokemon.baseStats.spDef;
   
     //create the list of Pokemon
     let list = document.querySelector('ul');
     let listItem = document.createElement('li');
     let pokemonButton = document.createElement('button');
     pokemonButton.innerText = name;
-    pokemonButton.classList.add("button")
+    pokemonButton.classList.add("button");
     listItem.appendChild(pokemonButton);
     list.appendChild(listItem);
-    
-  }
-
-  //some future unknown use
-  function showDetails(pokemon) {
-    console.log(pokemon);
+    addListener(pokemonButton, pokemon);
+    getButtonColor (pokemonButton, type1)
   }
 
   //return the functions to give access to them
