@@ -73,6 +73,7 @@ let pokemonRepository = (function() {
   }
   
 
+
   function findPokemon(pokemon) {
     let foundPokemon = pokemonList.filter(function(element){
       return element.name.toUpperCase() === pokemon.toUpperCase()
@@ -80,62 +81,44 @@ let pokemonRepository = (function() {
     return foundPokemon;
     }
 
+  function addListItem(pokemon) {
+    //varuables for pokemon object
+    let name = pokemon.name;
+    let type1 = pokemon.types[0];
+    let type2 = pokemon.types[1];
+    let height = pokemon.height;
+    let weight = pokemon.weight
+    let hp = pokemon.baseStats.hp
+    let attack = pokemon.baseStats.attack
+    let defense = pokemon.baseStats.defense
+    let speed = pokemon.baseStats.speed
+    let spAtk = pokemon.baseStats.spAtk
+    let spDef = pokemon.baseStats.spDef
+  
+    //create the list of Pokemon
+    let list = document.querySelector('ul');
+    let listItem = document.createElement('li');
+    let pokemonButton = document.createElement('button');
+    pokemonButton.innerText = name;
+    pokemonButton.classList.add("button")
+    listItem.appendChild(pokemonButton);
+    list.appendChild(listItem);
+    
+  }
+
+  //some future unknown use
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
 
   //return the functions to give access to them
   return {
     getAll: getAll,
     add: add,
-    findPokemon: findPokemon
+    findPokemon: findPokemon,
+    addListItem: addListItem
   };
 }());
 
 
-//function used to display all aspects of a Pokemon.  To but entered into a forEach loop.
-function displayPokemon(pokemon) {
-  let name = pokemon.name;
-  let type1 = pokemon.types[0];
-  let type2 = pokemon.types[1];
-  let height = pokemon.height;
-  let weight = pokemon.weight
-  let hp = pokemon.baseStats.hp
-  let attack = pokemon.baseStats.attack
-  let defense = pokemon.baseStats.defense
-  let speed = pokemon.baseStats.speed
-  let spAtk = pokemon.baseStats.spAtk
-  let spDef = pokemon.baseStats.spDef
-  
-  document.write(`<h3 class="${type1}">${name}: <br></h3>`);
-
-  //Determine whether one or two types, then print text accordingly
-  if (pokemon.types.length === 2) {
-    document.write(`Types - ${type1}, ${type2} <br>`)
-  }
-  else {
-  document.write(`Type - ${type1} <br>`)
-  }
-
-  //Add a special comment about the Pokemon's height.  1.2+ is large, .7- is small
-  //<p> tag added to create more white space between the height and the comment
-  if (height > 1.2){
-    document.write(`Height - ${height}  <p class="size-comment">Wow, that's big!</p> <br>`)
-  }
-  else if (height > .7) {
-    document.write(`Height - ${height}  <p class="size-comment">I'd say that's about average size.</p> <br>`)
-  }
-  else {
-    document.write(`Height - ${height}  <p class="size-comment">That's a really small Pokemon!</p> <br>`)
-  }
-
-  //prints weight and base stats. div added to provide spacing on the left margin
-  document.write(` Weight - ${weight} <br>
-    Base Stats: <br>
-    <div class="base-stats">HP - ${hp} <br>
-    Attack - ${attack} <br>
-    Defense - ${defense} <br>
-    Speed - ${speed} <br>
-    Special Attack - ${spAtk} <br>
-    Special Defense - ${spDef} <br><br>
-    </div>` );
-}
-
-pokemonRepository.getAll().forEach(displayPokemon);
+pokemonRepository.getAll().forEach(pokemonRepository.addListItem);
