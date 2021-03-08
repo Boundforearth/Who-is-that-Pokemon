@@ -1,50 +1,22 @@
 
 let pokemonRepository = (function() {
   //static list of Pokemon objects 
-  let pokemonList = [
-  {
-    name: "Clefairy",
-    types: ["Fairy"],
-    height: 0.6,
-    weight: 7.5,
-    baseStats: {
-      hp: 70,
-      attack: 45,
-      defense: 48,
-      speed: 35,
-      spAtk: 60,
-      spDef: 65
-    }
-  },
-  {
-    name: "Ghastly",
-    types: ["Ghost", "Poison"],
-    height: 1.3,
-    weight: 0.1,
-    baseStats: {
-      hp: 30,
-      attack: 35,
-      defense: 30,
-      speed: 80,
-      spAtk: 100,
-      spDef: 35
-    }
-  },
-  {
-    name: "Porygon",
-    types: ["Normal"],
-    height: 0.8,
-    weight: 36.5,
-    baseStats: {
-      hp: 65,
-      attack: 60,
-      defense: 70,
-      speed: 40,
-      spAtk: 85,
-      spDef: 75
-    }
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  function loadList() {
+    fetch(apiUrl).then(function (resolve) {
+      return resolve.json();
+    }).then(function (json) {
+      json.results.forEach( function(item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        }
+        add(pokemon);
+      })}).catch(function(e) {
+        console.error(e);
+      } )
   }
-];
 
   function chooseButtonClass (type) {
     let newClass;
@@ -206,7 +178,8 @@ let pokemonRepository = (function() {
     getAll: getAll,
     add: add,
     findPokemon: findPokemon,
-    addListItem: addListItem
+    addListItem: addListItem,
+    loadList: loadList
   };
 }());
 
