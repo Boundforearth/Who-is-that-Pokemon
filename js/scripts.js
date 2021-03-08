@@ -18,6 +18,26 @@ let pokemonRepository = (function() {
       } )
   }
 
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).this(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.height = details.height;
+      item.imageUrl = details.sprites.front_default;
+      image.hp = details.stats[0].base_stat;
+      image.attack = details.stats[1].base_stat;
+      image.defense = details.stats[2].base_stat;
+      image.spAtk = details.stats[3].base_stat;
+      image.spDef = details.stats[4].base_stat;
+      image.speed = details.stats[5].base_stat;
+      item.types = details.types;
+      item.weight = details.weight;
+    }).catch(function (e) {
+      console.log(e);
+    })
+  }
+
   function chooseButtonClass (type) {
     let newClass;
     switch (type) {
@@ -179,7 +199,8 @@ let pokemonRepository = (function() {
     add: add,
     findPokemon: findPokemon,
     addListItem: addListItem,
-    loadList: loadList
+    loadList: loadList,
+    loadDetails: loadDetails
   };
 }());
 
