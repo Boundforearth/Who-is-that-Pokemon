@@ -2,30 +2,38 @@
 let pokemonRepository = (function() {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=493';
+  //Load a list of Pokemon names from the pokeapi
   function loadList() {
     return fetch(apiUrl).then(function(response) {
+      //turn response into json
       return response.json();
     }).then(function (json) {
+      //name of array provided by api is results
       json.results.forEach( function(item) {
         let pokemon = {
           name: item.name,
           detailsUrl: item.url
         }
+        //push pokemon provided by api into pokemonList
         add(pokemon);
       })
     }).catch(function(e) {
         console.error(e);
       } )
   }
+
+  //function to display pokemon based on which generation is chosen
   function chooseList () {
     let array = ["1", "2", "3", "4"];
     for(let i = 0; i < 4; i++) {
       let genEvent = document.getElementById("gen" + array[i]);
       genEvent.addEventListener('click', function(){
+        //first hide all results because previous choice is unknown
         let hide = document.querySelectorAll(".button");
         hide.forEach(function(element) {
           element.classList.add("hidden");
         })
+        //unhide the selected Pokemon
         let unhide = document.querySelectorAll(".button" + array[i]);
         unhide.forEach(function(element) {
           element.classList.remove("hidden");
@@ -34,12 +42,13 @@ let pokemonRepository = (function() {
     }
   }
 
-
+  //function to load the specific details for a given pokemon
   function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url).then(function(response) {
       return response.json();
     }).then(function (details) {
+      //List of details for each Pokemon I want to provide
       item.height = details.height;
       item.imageUrl = details.sprites.front_default;
       item.hp = details.stats[0].base_stat;
@@ -49,7 +58,7 @@ let pokemonRepository = (function() {
       item.spDef = details.stats[4].base_stat;
       item.speed = details.stats[5].base_stat;
       item.type1 = details.types[0].type.name;
-
+      //determine if there are two types
       if (details.types[1]) {
       item.type2 = details.types[1].type.name;
       }
@@ -60,6 +69,8 @@ let pokemonRepository = (function() {
     })
   }
 
+  //currently obsolete function that would have added a class to apply a background color based on type
+  //Maybe usable later, so left in 
   function chooseButtonClass (type) {
     let newClass;
     switch (type) {
@@ -158,7 +169,7 @@ let pokemonRepository = (function() {
     else {pokemonList.push(pokemon)};
     }
 
-
+  /*  Maybe do something with this later
   function findPokemon() {
     let input = document.getElementById("searchPokemon").value;
     let foundPokemon = pokemonList.filter(function(element){
@@ -166,7 +177,7 @@ let pokemonRepository = (function() {
       input.toUpperCase()
     });
     return foundPokemon;
-    }
+    } */
 
   //function to add event listener to pokemon buttons
   //"showDetails" function is wrapped in another function to prevent being called immediately
@@ -176,25 +187,15 @@ let pokemonRepository = (function() {
     });
   }
   
-  //some future unknown use
+  //log a pokemon to the console
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function() {
     console.log(pokemon)});
   }
 
   function addListItem(pokemon) {
-    //varuables for pokemon object
+    //assign a name to each list item
     let name = pokemon.name;
-    let type1 = pokemon.type1;
-    let type2 = pokemon.type2;
-    let height = pokemon.height;
-    let weight = pokemon.weight;
-    let hp = pokemon.hp;
-    let attack = pokemon.attack;
-    let defense = pokemon.defense;
-    let speed = pokemon.speed;
-    let spAtk = pokemon.spAtk;
-    let spDef = pokemon.spDef;
   
     //create the list of Pokemon
     let list = document.querySelector('ul');
