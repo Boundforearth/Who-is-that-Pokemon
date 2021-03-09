@@ -18,10 +18,21 @@ ul {
   text-align: center;
 }
 
-.button {
+li {
+  display: inline-block;
+}
+
+.button1,
+.button2,
+.button3,
+.button4 {
   width: 200px;
   height: 50px;
   margin: 20px;
+}
+
+.generation-list {
+  text-align: center;
 }
 
 .base-stats {
@@ -34,100 +45,12 @@ ul {
 }
 
 
-/*CSS for button coloring based on all the possible types of pokemon*/
-.fairyButton {
-  background-color: #ffc7ea;
-  border: 2px #ffb7f5 solid;
+.generation {
+  height: 20px;
+  width: 75px;
+  margin: 10px 20px;
 }
 
-.ghostButton {
-  background-color: #3c115f;
-  color: #fff;
-  border: 2px #6d24a8 solid;
-}
-
-.normalButton {
-  background-color: #ccc;
-  border: 2px #d4d4d4 solid;
-}
-
-.fireButton {
-  background-color: #f36421;
-  border: 2px #df6616 solid;
-}
-
-.electricButton {
-  background-color: #ffee00;
-  border: 2px #f0d802 solid;
-}
-
-.iceButton {
-  background-color: #a1f4ff;
-  border: 2px #a9f9ff solid;
-}
-
-.waterButton {
-  background-color: #479ee6;
-  border: 2px #4aa0e7 solid;
-}
-
-.grassButton {
-  background-color: #05db57;
-  border: 2px #06d321 solid;
-}
-
-.bugButton {
-  background-color: #88e015;
-  border: 2px #61bb0d solid;
-}
-
-.flyingButton {
-  background-color: rgb(130, 209, 214);
-  border: 2px #7ac9be solid;
-}
-
-.fightingButton {
-  background-color: #bb3928;
-  border: 2px #d3311b solid;
-  color: #fff
-}
-
-.psychicButton {
-  background-color: #a359e7;
-  border: 2px #c074df solid;
-  color: #fff;
-}
-
-.steelButton {
-  background-color: #5a5858;
-  border: 2px #6e6c6c solid;
-  color: #fff;
-}
-
-.rockButton {
-  background-color: #9c764b;
-  border: 2px #a37c58 solid;
-}
-
-.groundButton {
-  background-color: #c77415;
-  border: 2px #c96b1f solid;
-}
-
-.darkButton {
-  background-color: #000000;
-  border: 2px #181515 solid;
-  color: #fff
-}
-
-.poisonButton {
-  background-color: #5f3464;
-  border: 2px #572f63 solid;
-  color: #fff;
-}
-
-.dragonButton {
-  background-color: #22359e;
-  border: 2px #2a1fc9 solid;
-  color: #fff;
+.hidden {
+  display: none;
 }
