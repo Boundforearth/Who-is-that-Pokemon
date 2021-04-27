@@ -65,7 +65,7 @@ li {
 
 .generation {
   height: 20px;
-  width: 75px;
+  min-width: 75px;
   margin: 10px 20px;
 }
 
