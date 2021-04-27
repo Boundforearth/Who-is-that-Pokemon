@@ -22,6 +22,97 @@ let pokemonRepository = (function() {
       } )
   }
 
+  let modalContainer = document.querySelector('#modal-container');
+  function showModal(title, image, weight, height, hp, attack, defense, spAtk, spDef, speed ,type1, type2) {
+    //Clear previous content
+    modalContainer.innerHTML = ''
+
+    modalContainer.classList.add('is-visible');
+
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+
+    //create a close button
+    let closeButton = document.createElement('button');
+    closeButton.classList.add('modal-close');
+    closeButton.innerText = 'Close';
+    closeButton.addEventListener('click', hideModal);
+
+    let imageUrl = document.createElement('img');
+    imageUrl.classList.add('pokemon-image');
+    imageUrl.src = image;
+    //create a title element
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = title;
+
+    //element for content
+    let pokemonContent = document.createElement('div');
+    pokemonContent.classList.add('pokemon-content');
+    let informationSetOne = document.createElement('div');
+    let informationSetTwo = document.createElement('div');
+    let typeOneElement = document.createElement('p');
+    typeOneElement.innerText = 'Type 1: ' + type1;
+    let typeTwoElement = document.createElement('p');
+    typeTwoElement.innerText = 'Type 2: '+ type2;
+    let weightElement = document.createElement('p');
+    weightElement.innerText = 'Weight: ' + weight;
+    let heightElement = document.createElement('p');
+    heightElement.innerText = 'Height: ' + height;
+    let statsList = document.createElement('ul');
+    let hpElement = document.createElement('li');
+    hpElement.innerText = 'HP: ' + hp;
+    let attackElement = document.createElement('li');
+    attackElement.innerText = 'Attack: ' + attack;
+    let defenseElement = document.createElement('li');
+    defenseElement.innerText = 'Defense: ' + defense;
+    let spAtkElement = document.createElement('li');
+    spAtkElement.innerText = 'SpAtk: ' + spAtk;
+    let spDefElement = document.createElement('li');
+    spDefElement.innerText = 'SpDef: ' + spDef;
+    let speedElement = document.createElement('li');
+    speedElement.innerText = 'speed: ' + speed;
+
+    //append all created items
+    modal.appendChild(closeButton);
+    modal.appendChild(titleElement);
+    modal.appendChild(imageUrl);
+    modal.appendChild(pokemonContent);
+    pokemonContent.appendChild(informationSetOne);
+    informationSetOne.appendChild(typeOneElement);
+    if(type2) {
+      informationSetOne.appendChild(typeTwoElement);
+    }
+    informationSetOne.appendChild(weightElement);
+    informationSetOne.appendChild(heightElement);
+    pokemonContent.appendChild(informationSetTwo);
+    informationSetTwo.appendChild(statsList);
+    statsList.appendChild(hpElement);
+    statsList.appendChild(attackElement);
+    statsList.appendChild(defenseElement);
+    statsList.appendChild(spAtkElement);
+    statsList.appendChild(spDefElement);
+    statsList.appendChild(speedElement);
+    modalContainer.appendChild(modal);
+  }
+
+  function hideModal () {
+    modalContainer.classList.remove('is-visible');
+  }
+
+  window.addEventListener('keydown', function(e) {
+    if(e.key === 'Escape' && modalContainer.classList.contains('is-visible')){
+      hideModal();
+    }
+  })
+
+  modalContainer.addEventListener('click', function(e) {
+    let target = e.target;
+    if(target === modalContainer) {
+      hideModal();
+    }
+  })
+
   //function to display pokemon based on which generation is chosen
   function chooseList () {
     let array = ["1", "2", "3", "4"];
@@ -57,13 +148,12 @@ let pokemonRepository = (function() {
       item.spAtk = details.stats[3].base_stat;
       item.spDef = details.stats[4].base_stat;
       item.speed = details.stats[5].base_stat;
+      item.weight = details.weight;
       item.type1 = details.types[0].type.name;
       //determine if there are two types
       if (details.types[1]) {
       item.type2 = details.types[1].type.name;
       }
-
-      item.weight = details.weight;
     }).catch(function (e) {
       console.log(e);
     })
@@ -182,16 +272,17 @@ let pokemonRepository = (function() {
   //function to add event listener to pokemon buttons
   //"showDetails" function is wrapped in another function to prevent being called immediately
   function addListener(element, object) {
-    element.addEventListener("click", function(event) {
+    element.addEventListener("click", function() {
       showDetails(object);
-    });
-  }
+    })};
   
   //log a pokemon to the console
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function() {
-    console.log(pokemon)});
-  }
+    showModal(pokemon.name, pokemon.imageUrl , pokemon.height, pokemon.weight, pokemon.hp, pokemon.attack, pokemon.defense, 
+      pokemon.spAtk, pokemon.spDef, pokemon.speed, pokemon.type1, pokemon.type2);
+    console.log(pokemon);
+  })}
 
   function addListItem(pokemon) {
     //assign a name to each list item
@@ -200,6 +291,7 @@ let pokemonRepository = (function() {
     //create the list of Pokemon
     let list = document.querySelector('ul');
     let listItem = document.createElement('li');
+    listItem.classList.add("listButton")
     let pokemonButton = document.createElement('button');
     pokemonButton.innerText = name;
     if(pokemonList.indexOf(pokemon) < 151) {
@@ -208,7 +300,7 @@ let pokemonRepository = (function() {
       pokemonButton.classList.add("button2");
     } else if(pokemonList.indexOf(pokemon) > 250 && pokemonList.indexOf(pokemon) <= 385) {
       pokemonButton.classList.add("button3");
-    } else if(pokemonList.indexOf(pokemon) > 386) {
+    } else if(pokemonList.indexOf(pokemon) > 385) {
       pokemonButton.classList.add("button4");
     } 
     pokemonButton.classList.add("button");
@@ -223,7 +315,6 @@ let pokemonRepository = (function() {
   return {
     getAll: getAll,
     add: add,
-    findPokemon: findPokemon,
     addListItem: addListItem,
     loadList: loadList,
     loadDetails: loadDetails,
