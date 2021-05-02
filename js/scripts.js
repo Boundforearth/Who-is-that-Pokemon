@@ -53,9 +53,13 @@ let pokemonRepository = (function() {
     let informationSetTwo = document.createElement('div');
     let typeOneElement = document.createElement('p');
     typeOneElement.innerText = 'Type 1: ' + type1;
+
+    //set color for type1
     chooseButtonClass(type1, typeOneElement);
     let typeTwoElement = document.createElement('p');
     typeTwoElement.innerText = 'Type 2: '+ type2;
+
+    //set color for type2
     chooseButtonClass(type2, typeTwoElement);
     let weightElement = document.createElement('p');
     weightElement.innerText = 'Weight: ' + weight;
@@ -135,6 +139,22 @@ let pokemonRepository = (function() {
     }
   }
 
+  let searchInput = document.querySelector("#search-pokemon")
+  searchInput.addEventListener("input", function() {
+    let inputValue = searchInput.value;
+    let displayedPokemon = document.querySelectorAll(".listButton");
+    displayedPokemon.forEach(function(button) {
+      let text = button.innerText.toUpperCase();
+      if(text.startsWith(inputValue.toUpperCase())) {
+        button.style.display='';
+      }
+      else{
+        button.style.display="none";
+      }
+      }
+    )
+  })
+
   //function to load the specific details for a given pokemon
   function loadDetails(item) {
     let url = item.detailsUrl;
@@ -161,8 +181,7 @@ let pokemonRepository = (function() {
     })
   }
 
-  //currently obsolete function that would have added a class to apply a background color based on type
-  //Maybe usable later, so left in 
+  //sets color around types of Pokemon
   function chooseButtonClass (type, element) {
     let newClass;
     let typeArray = ["bug","dark","dragon","electric","fairy","fighting","fire","flying"
@@ -175,11 +194,6 @@ let pokemonRepository = (function() {
     }
     element.classList.add(newClass);
     element.classList.add("allType");
-  }
-
-  //function to select color of the button
-  function getButtonColor (button, type) {
-    button.classList.add(chooseButtonClass(type));
   }
 
   // function to give access to the pokemonList outside of this IIFE
@@ -196,16 +210,6 @@ let pokemonRepository = (function() {
     }
     else {pokemonList.push(pokemon)};
     }
-
-  /*  Maybe do something with this later
-  function findPokemon() {
-    let input = document.getElementById("searchPokemon").value;
-    let foundPokemon = pokemonList.filter(function(element){
-     return element.name.toUpperCase() === 
-      input.toUpperCase()
-    });
-    return foundPokemon;
-    } */
 
   //function to add event listener to pokemon buttons
   //"showDetails" function is wrapped in another function to prevent being called immediately
@@ -227,7 +231,7 @@ let pokemonRepository = (function() {
     let name = pokemon.name;
   
     //create the list of Pokemon
-    let list = document.querySelector('ul');
+    let list = document.querySelector('.pokemon-list');
     let listItem = document.createElement('li');
     listItem.classList.add("listButton")
     let pokemonButton = document.createElement('button');

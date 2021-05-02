@@ -3,25 +3,38 @@
     <head>
       <meta charset="utf-8" />
       <title>Who's that Pokemon?!?</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
       <link rel="stylesheet" href="./css/styles.css" type="text/css" />
     </head>
     <body>
-      <h2>Pokedex:</h2>
-      <div class="generation-list">
-        <button id="gen1" class="generation">1 - 151</button>
-        <button id="gen2" class="generation">152 - 251</button>
-        <button id="gen3" class="generation">252 - 386</button>
-        <button id="gen4" class="generation">387 - 493</button>
-      </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Who's That Pokemon!</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#genNav" aria-controls="genNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span>Choose a generation</span>
+          </button>
+          <form>
+            <input type="search" name="search-pokemon" id="search-pokemon" placeholder="Search...">
+            <button type="submit">Search</button>
+          </form>
+          <div class="collapse navbar-collapse" id="genNav">
+            <ul class="generation-list navbar-nav">
+              <li id="gen1" class="generation nav-item">Generaion 1</li>
+              <li id="gen2" class="generation nav-item">Generaion 2</li>
+              <li id="gen3" class="generation nav-item">Generaion 3</li>
+              <li id="gen4" class="generation nav-item">Generaion 4</li>
+            </ul>
+          </div>
+        </div>
+      </nav>  
+      <div id="modal-container"></div>
+      <ul class="pokemon-list"></ul>    
       <script src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" 
-      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" 
-      crossorigin="anonymous"></script>
-      <div id="modal-container"></div>
-      <ul class="pokemon-list"></ul>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
       <script src="./js/promise-polyfill.js"></script>
       <script src="./js/fetch-polyfill.js"></script>
       <script src="./js/scripts.js"></script>

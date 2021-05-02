@@ -123,6 +123,7 @@ li {
 
 .fireButton {
   background-color: #f36421;
+  color: #fff;
 }
 
 .electricButton {
@@ -135,6 +136,7 @@ li {
 
 .waterButton {
   background-color: #479ee6;
+  color: #fff;
 }
 
 .grassButton {
@@ -166,10 +168,12 @@ li {
 
 .rockButton {
   background-color: #9c764b;
+  color: #fff;
 }
 
 .groundButton {
   background-color: #c77415;
+  color: #fff;
 }
 
 .darkButton {
