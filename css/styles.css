@@ -62,13 +62,6 @@ li {
   margin-left: 10px;
 }
 
-
-.generation {
-  height: 20px;
-  min-width: 75px;
-  margin: 10px 20px;
-}
-
 .hidden {
   display: none;
 }
@@ -106,6 +99,7 @@ li {
   float: right;
 
 }
+
 
 /*CSS for button coloring based on all the possible types of pokemon*/
 .allType {
