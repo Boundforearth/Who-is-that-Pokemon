@@ -53,8 +53,10 @@ let pokemonRepository = (function() {
     let informationSetTwo = document.createElement('div');
     let typeOneElement = document.createElement('p');
     typeOneElement.innerText = 'Type 1: ' + type1;
+    chooseButtonClass(type1, typeOneElement);
     let typeTwoElement = document.createElement('p');
     typeTwoElement.innerText = 'Type 2: '+ type2;
+    chooseButtonClass(type2, typeTwoElement);
     let weightElement = document.createElement('p');
     weightElement.innerText = 'Weight: ' + weight;
     let heightElement = document.createElement('p');
@@ -161,82 +163,18 @@ let pokemonRepository = (function() {
 
   //currently obsolete function that would have added a class to apply a background color based on type
   //Maybe usable later, so left in 
-  function chooseButtonClass (type) {
+  function chooseButtonClass (type, element) {
     let newClass;
-    switch (type) {
-      case "bug":
-        newClass = "bugButton";
+    let typeArray = ["bug","dark","dragon","electric","fairy","fighting","fire","flying"
+    ,"ghost","grass","ground","ice","normal","poison", "psychic", "rock", "steel", "water"];
+    for(let i = 0; i < typeArray.length; i++) {
+      if(type === typeArray[i]) {
+        newClass = type + "Button";
         break;
-      
-      case "dark":
-        newClass = "darkButton";
-        break;
-
-      case "dragon":
-        newClass = "dragonButton";
-        break;
-
-      case "electric":
-        newClass = "electricButton";
-        break;
-        
-      case "fairy":
-        newClass = "fairyButton";
-        break;
-  
-      case "fighting":
-        newClass = "fightingButton";
-        break;
-
-      case "fire":
-        newClass = "fireButton";
-        break;
-          
-      case "flying":
-        newClass = "flyingButton";
-        break;
-    
-      case "ghost":
-        newClass = "ghostButton";
-        break;
-
-      case "grass":
-        newClass = "grassButton";
-        break;
-      
-      case "ground":
-        newClass = "groundButton";
-        break;
-
-      case "ice":
-        newClass = "iceButton";
-        break;
-
-      case "normal":
-        newClass = "normalButton";
-        break;
-      
-      case "poison":
-        newClass = "poisonButton";
-        break;
-
-      case "psychic":
-        newClass = "psychicButton";
-        break;
-      
-      case "rock":
-        newClass = "rockButton";
-        break;
-        
-      case "steel":
-        newClass = "steelButton";
-        break;
-  
-      case "water":
-        newClass = "waterButton";
-        break;
+      }
     }
-    return newClass
+    element.classList.add(newClass);
+    element.classList.add("allType");
   }
 
   //function to select color of the button

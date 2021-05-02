@@ -106,3 +106,89 @@ li {
   float: right;
 
 }
+
+/*CSS for button coloring based on all the possible types of pokemon*/
+.allType {
+  border: 1px #000 solid;
+  border-radius: 5%;
+  padding: 5px;
+}
+
+.fairyButton {
+  background-color: #ffc7ea;
+}
+
+.ghostButton {
+  background-color: #3c115f;
+  color: #fff;
+}
+
+.normalButton {
+  background-color: #ccc;
+}
+
+.fireButton {
+  background-color: #f36421;
+}
+
+.electricButton {
+  background-color: #ffee00;
+}
+
+.iceButton {
+  background-color: #a1f4ff;
+}
+
+.waterButton {
+  background-color: #479ee6;
+}
+
+.grassButton {
+  background-color: #05db57;
+}
+
+.bugButton {
+  background-color: #88e015;
+}
+
+.flyingButton {
+  background-color: rgb(130, 209, 214);
+}
+
+.fightingButton {
+  background-color: #bb3928;
+  color: #fff
+}
+
+.psychicButton {
+  background-color: #a359e7;
+  color: #fff;
+}
+
+.steelButton {
+  background-color: #5a5858;
+  color: #fff;
+}
+
+.rockButton {
+  background-color: #9c764b;
+}
+
+.groundButton {
+  background-color: #c77415;
+}
+
+.darkButton {
+  background-color: #000000;
+  color: #fff
+}
+
+.poisonButton {
+  background-color: #5f3464;
+  color: #fff;
+}
+
+.dragonButton {
+  background-color: #22359e;
+  color: #fff;
+}
