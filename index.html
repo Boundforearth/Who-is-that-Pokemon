@@ -8,23 +8,30 @@
       <link rel="stylesheet" href="./css/styles.css" type="text/css" />
     </head>
     <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Who's That Pokemon!</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#genNav" aria-controls="genNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span>Choose a generation</span>
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <form>
-            <input type="search" name="search-pokemon" id="search-pokemon" placeholder="Search...">
-            <button type="submit">Search</button>
-          </form>
           <div class="collapse navbar-collapse" id="genNav">
             <ul class="generation-list navbar-nav">
-              <li id="gen1" class="generation nav-item">Generaion 1</li>
-              <li id="gen2" class="generation nav-item">Generaion 2</li>
-              <li id="gen3" class="generation nav-item">Generaion 3</li>
-              <li id="gen4" class="generation nav-item">Generaion 4</li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="genNavMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Choose a Generation
+                </a>
+                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="genNavMenuLink">
+                  <li id="gen1" class="generation dropdown-item">Generaion 1</li>
+                  <li id="gen2" class="generation dropdown-item">Generaion 2</li>
+                  <li id="gen3" class="generation dropdown-item">Generaion 3</li>
+                  <li id="gen4" class="generation dropdown-item">Generaion 4</li>
+                </ul>
+              </li>
             </ul>
+            <form class="search">
+              <input type="search" name="search-pokemon" id="search-pokemon" placeholder="Search...">
+              <button type="submit">Search</button>
+            </form>
           </div>
         </div>
       </nav>  

@@ -23,10 +23,19 @@ li {
   margin: 5px;
 }
 
+@media (min-width: 768px) {
+ .navbar-collapse {
+    justify-content: space-between;
+}}
+
 .listButton {
   display: inline-block;
   margin: 0;
   text-align: center;
+}
+
+.nav-item:hover {
+  cursor: pointer;
 }
 
 .button1,
