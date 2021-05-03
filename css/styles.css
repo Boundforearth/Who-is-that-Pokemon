@@ -1,11 +1,7 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
-  margin-left: 10px;
   font-size: 18px;
   line-height: 1.3;
+  background-color: #2b73b3;
 }
 
 h1, h2 {
@@ -45,15 +41,26 @@ li {
   width: 200px;
   height: 50px;
   margin: 20px;
-  padding: 0px;
-  border: 2px #555 solid;
-  background-color: #ddd;
   border-radius: 5px;
+}
+
+.row {
+  display: block;
 }
 
 .modal-footer {
   display: flex;
   justify-content: space-around;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.modal-header .btn-close {
+  margin: 0;
 }
 
 .generation-list {
@@ -63,6 +70,15 @@ li {
 .pokemon-content {
   display: flex;
   justify-content: space-around;
+}
+
+.listButton {
+  text-transform: capitalize;
+}
+
+
+.is-visible{
+  display: inline-block;
 }
 
 .pokemon-image {

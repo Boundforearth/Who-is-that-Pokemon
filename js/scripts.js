@@ -3,15 +3,15 @@ let pokemonRepository = (function() {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=493';
 
-    //function to add additional Pokemon to the pokemon list
-    function add(pokemon) {
+  //function to add additional Pokemon to the pokemon list
+  function add(pokemon) {
 
-      //Checks if input is an object
-      if(typeof(pokemon) !== "object") {
-        return alert("Please write a Pokemon as an object");
-      }
-      else {pokemonList.push(pokemon)};
-      }
+    //Checks if input is an object
+    if(typeof(pokemon) !== "object") {
+      return alert("Please write a Pokemon as an object");
+     }
+    else {pokemonList.push(pokemon)};
+     }
 
   //Load a list of Pokemon names from the pokeapi
   function loadList() {
@@ -33,7 +33,45 @@ let pokemonRepository = (function() {
       } )
   }
 
-  function showModal(title, number, image, weight, height, hp, attack, defense, spAtk, spDef, speed ,type1, type2) {
+  let modalContainer = document.querySelector(".modal");
+
+  /*Function to set all data for modal, including functions to select the previous pokemon and the next pokemon.
+  The hide modal function is still here as it provides a way to remove the event listeners from the previous and 
+  next pokemon functions.  Bootstrap takes care of actually hiding the modals.
+  */
+  function showModal(title, number, image, height, weight, hp, attack, defense, spAtk, spDef, speed ,type1, type2) {
+
+    // Select the previous and next buttons
+    let nextPokemon = document.querySelector(".next-pokemon");
+    let previousPokemon = document.querySelector(".previous-pokemon");
+    
+    //function to add Event listener to previous pokemon button, then remove once triggered
+    function previousPkmn() {
+      wantedIndexNumber = number - 2;
+      if(wantedIndexNumber < 0) {
+        return;
+      }
+      wantedIndex = pokemonList[wantedIndexNumber];
+      showDetails(wantedIndex);
+      wantedIndex = "";
+      removeListeners();
+    }
+    
+    previousPokemon.addEventListener("click", previousPkmn);
+    
+    //function to add Event listener to next pokemon button, then remove once triggered
+    function nextPkmn() {
+      wantedIndexNumber = number;
+      if(wantedIndexNumber > 492) {
+        return;
+      }
+      wantedIndex = pokemonList[wantedIndexNumber];
+      showDetails(wantedIndex);
+      wantedIndex = "";
+      removeListeners();
+      }
+        nextPokemon.addEventListener("click", nextPkmn)
+
 
     //Add the Pokemons number
     let pokemonNumber = document.querySelector(".pokemon-number")
@@ -43,7 +81,8 @@ let pokemonRepository = (function() {
     //Clear previous title, set new title
     let modalTitle = document.querySelector(".modal-title");
     modalTitle.innerText = ""
-    modalTitle.innerText = title
+    capitalizedLetter = title.charAt(0).toUpperCase();
+    modalTitle.innerText = capitalizedLetter + title.slice(1);
 
     //empty modal body HTML
     let modalBody = document.querySelector(".modal-body");
@@ -70,9 +109,9 @@ let pokemonRepository = (function() {
     //set color for type2
     chooseButtonClass(type2, typeTwoElement);
     let weightElement = document.createElement('p');
-    weightElement.innerText = 'Weight: ' + weight;
+    weightElement.innerText = 'Weight: ' + weight + "kg";
     let heightElement = document.createElement('p');
-    heightElement.innerText = 'Height: ' + height;
+    heightElement.innerText = 'Height: ' + height + "m";
     let statsList = document.createElement('ul');
     let hpElement = document.createElement('li');
     hpElement.innerText = 'HP: ' + hp;
@@ -106,33 +145,35 @@ let pokemonRepository = (function() {
     statsList.appendChild(spDefElement);
     statsList.appendChild(speedElement);
 
-    function previousPkmn() {
-      wantedIndexNumber = number - 2;
-      if(wantedIndexNumber < 0) {
-        return;
-      }
-      wantedIndex = pokemonList[wantedIndexNumber];
-      showDetails(wantedIndex);
-      wantedIndex = "";
+    //Basically a function to remove event listeners at this point
+    function removeListeners () {
+      nextPokemon.removeEventListener("click", nextPkmn);
       previousPokemon.removeEventListener("click", previousPkmn);
     }
 
-    let previousPokemon = document.querySelector(".previous-pokemon");
-    previousPokemon.addEventListener("click", previousPkmn);
+    //select close button
+    let closeButton = document.querySelector(".close-button-one");
+    closeButton.addEventListener('click', removeListeners);
 
-    function nextPkmn() {
-      wantedIndexNumber = number;
-      if(wantedIndexNumber > 492) {
-        return;
+    let closeButtonTwo = document.querySelector(".close-button-two");
+    closeButtonTwo.addEventListener('click', removeListeners);
+
+
+    window.addEventListener('keydown', function(e) {
+      if(e.key === 'Escape'){
+        removeListeners();
       }
-      wantedIndex = pokemonList[wantedIndexNumber];
-      showDetails(wantedIndex);
-      wantedIndex = "";
-      nextPokemon.removeEventListener("click", nextPkmn);
+    })
+  
+    modalContainer.addEventListener('click', function(e) {
+      let target = e.target;
+      if(target === modalContainer) {
+        removeListeners();
+      }
+    })
+
   }
-    let nextPokemon = document.querySelector(".next-pokemon");
-    nextPokemon.addEventListener("click", nextPkmn)
-  }
+
   //function to display pokemon based on which generation is chosen
   function chooseList () {
     let array = ["1", "2", "3", "4"];
@@ -153,6 +194,7 @@ let pokemonRepository = (function() {
     }
   }
 
+  //Search for pokemon by name in a serach bar
   let searchInput = document.querySelector("#search-pokemon")
   searchInput.addEventListener("input", function() {
     let inputValue = searchInput.value;
@@ -177,7 +219,7 @@ let pokemonRepository = (function() {
     }).then(function (details) {
       //List of details for each Pokemon I want to provide
       item.id = details.id
-      item.height = details.height;
+      item.height = (details.height)/10;  
       item.imageUrl = details.sprites.front_default;
       item.hp = details.stats[0].base_stat;
       item.attack = details.stats[1].base_stat;
@@ -185,7 +227,7 @@ let pokemonRepository = (function() {
       item.spAtk = details.stats[3].base_stat;
       item.spDef = details.stats[4].base_stat;
       item.speed = details.stats[5].base_stat;
-      item.weight = details.weight;
+      item.weight = (details.weight)/10;
       item.type1 = details.types[0].type.name;
       //determine if there are two types
       if (details.types[1]) {
@@ -252,8 +294,8 @@ let pokemonRepository = (function() {
     } else if(index > 385) {
       pokemonButton.classList.add("button4");
     } 
-    pokemonButton.classList.add(index);
-    pokemonButton.classList.add(name);
+    pokemonButton.classList.add("col");
+    pokemonButton.classList.add("listButton");
     pokemonButton.classList.add("button");
     pokemonButton.classList.add("hidden");
     list.appendChild(pokemonButton);
