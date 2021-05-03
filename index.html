@@ -35,8 +35,27 @@
           </div>
         </div>
       </nav>  
-      <div id="modal-container"></div>
-      <ul class="pokemon-list"></ul>    
+      <ul class="pokemon-list"></ul> 
+      <div class="modal fade pokemonModal" tabindex="-1" role="dialog" aria-labelledby="pokemonModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="pokemon-number"></h5>
+              <h5 class="modal-title" id="pokemonModalLabel"></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close">
+              </button>
+            </div>
+            <div class="modal-body">
+              <!--append content here-->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="previous-pokemon">Prevoius</button>
+              <button type="button" data-bs-dismiss="modal">Close</button> 
+              <button type="button" class="next-pokemon">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>  
       <script src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"></script>

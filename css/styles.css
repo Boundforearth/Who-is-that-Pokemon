@@ -45,6 +45,15 @@ li {
   width: 200px;
   height: 50px;
   margin: 20px;
+  padding: 0px;
+  border: 2px #555 solid;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-around;
 }
 
 .generation-list {
@@ -70,45 +79,6 @@ li {
   display: inline;
   margin-left: 10px;
 }
-
-.hidden {
-  display: none;
-}
-
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  width: 100%;
-  max-width: 700px;
-  text-align: left;
-}
-
-#modal-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: none;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  background: rgba(0, 0, 0, .5);
-  padding: 20px;
-}
-
-#modal-container.is-visible {
-  display: grid;
-  text-align: center;
-
-}
-
-.modal-close {
-  float: right;
-
-}
-
 
 /*CSS for button coloring based on all the possible types of pokemon*/
 .allType {
@@ -198,4 +168,14 @@ li {
 .dragonButton {
   background-color: #22359e;
   color: #fff;
+}
+
+ul {
+  padding-inline-start: 0px;
+}
+
+.hidden {
+  display: none;
+  padding: 0;
+  margin: 0;
 }
