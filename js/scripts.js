@@ -7,10 +7,10 @@ let pokemonRepository = (function() {
   function add(pokemon) {
 
     //Checks if input is an object
-    if(typeof(pokemon) !== "object") {
-      return alert("Please write a Pokemon as an object");
+    if(typeof(pokemon) !== 'object') {
+      return alert('Please write a Pokemon as an object');
      }
-    else {pokemonList.push(pokemon)};
+    else {pokemonList.push(pokemon)}
      }
 
   //Load a list of Pokemon names from the pokeapi
@@ -33,7 +33,7 @@ let pokemonRepository = (function() {
       } )
   }
 
-  let modalContainer = document.querySelector(".modal");
+  let modalContainer = document.querySelector('.modal');
 
   /*Function to set all data for modal, including functions to select the previous pokemon and the next pokemon.
   The hide modal function is still here as it provides a way to remove the event listeners from the previous and 
@@ -42,50 +42,50 @@ let pokemonRepository = (function() {
   function showModal(title, number, image, height, weight, hp, attack, defense, spAtk, spDef, speed ,type1, type2) {
 
     // Select the previous and next buttons
-    let nextPokemon = document.querySelector(".next-pokemon");
-    let previousPokemon = document.querySelector(".previous-pokemon");
+    let nextPokemon = document.querySelector('.next-pokemon');
+    let previousPokemon = document.querySelector('.previous-pokemon');
     
     //function to add Event listener to previous pokemon button, then remove once triggered
     function previousPkmn() {
-      wantedIndexNumber = number - 2;
+      let wantedIndexNumber = number - 2;
       if(wantedIndexNumber < 0) {
         return;
       }
-      wantedIndex = pokemonList[wantedIndexNumber];
+      let wantedIndex = pokemonList[wantedIndexNumber];
       showDetails(wantedIndex);
-      wantedIndex = "";
+      wantedIndex = '';
       removeListeners();
     }
     
-    previousPokemon.addEventListener("click", previousPkmn);
+    previousPokemon.addEventListener('click', previousPkmn);
     
     //function to add Event listener to next pokemon button, then remove once triggered
     function nextPkmn() {
-      wantedIndexNumber = number;
+      let wantedIndexNumber = number;
       if(wantedIndexNumber > 492) {
         return;
       }
-      wantedIndex = pokemonList[wantedIndexNumber];
+      let wantedIndex = pokemonList[wantedIndexNumber];
       showDetails(wantedIndex);
-      wantedIndex = "";
+      wantedIndex = '';
       removeListeners();
       }
-        nextPokemon.addEventListener("click", nextPkmn)
+        nextPokemon.addEventListener('click', nextPkmn)
 
 
     //Add the Pokemons number
-    let pokemonNumber = document.querySelector(".pokemon-number")
-    pokemonNumber.innerText = ""
-    pokemonNumber.innerText = "#" + number
+    let pokemonNumber = document.querySelector('.pokemon-number')
+    pokemonNumber.innerText = ''
+    pokemonNumber.innerText = '#' + number
 
     //Clear previous title, set new title
-    let modalTitle = document.querySelector(".modal-title");
-    modalTitle.innerText = ""
-    capitalizedLetter = title.charAt(0).toUpperCase();
+    let modalTitle = document.querySelector('.modal-title');
+    modalTitle.innerText = '';
+    let capitalizedLetter = title.charAt(0).toUpperCase();
     modalTitle.innerText = capitalizedLetter + title.slice(1);
 
     //empty modal body HTML
-    let modalBody = document.querySelector(".modal-body");
+    let modalBody = document.querySelector('.modal-body');
     modalBody.innerHTML = ''
 
     //append an image to the body first
@@ -109,9 +109,9 @@ let pokemonRepository = (function() {
     //set color for type2
     chooseButtonClass(type2, typeTwoElement);
     let weightElement = document.createElement('p');
-    weightElement.innerText = 'Weight: ' + weight + "kg";
+    weightElement.innerText = 'Weight: ' + weight + 'kg';
     let heightElement = document.createElement('p');
-    heightElement.innerText = 'Height: ' + height + "m";
+    heightElement.innerText = 'Height: ' + height + 'm';
     let statsList = document.createElement('ul');
     let hpElement = document.createElement('li');
     hpElement.innerText = 'HP: ' + hp;
@@ -147,15 +147,15 @@ let pokemonRepository = (function() {
 
     //Basically a function to remove event listeners at this point
     function removeListeners () {
-      nextPokemon.removeEventListener("click", nextPkmn);
-      previousPokemon.removeEventListener("click", previousPkmn);
+      nextPokemon.removeEventListener('click', nextPkmn);
+      previousPokemon.removeEventListener('click', previousPkmn);
     }
 
     //select close button
-    let closeButton = document.querySelector(".close-button-one");
+    let closeButton = document.querySelector('.close-button-one');
     closeButton.addEventListener('click', removeListeners);
 
-    let closeButtonTwo = document.querySelector(".close-button-two");
+    let closeButtonTwo = document.querySelector('.close-button-two');
     closeButtonTwo.addEventListener('click', removeListeners);
 
 
@@ -176,36 +176,36 @@ let pokemonRepository = (function() {
 
   //function to display pokemon based on which generation is chosen
   function chooseList () {
-    let array = ["1", "2", "3", "4"];
+    let array = ['1', '2', '3', '4'];
     for(let i = 0; i < 4; i++) {
-      let genEvent = document.getElementById("gen" + array[i]);
+      let genEvent = document.getElementById('gen' + array[i]);
       genEvent.addEventListener('click', function(){
         //first hide all results because previous choice is unknown
-        let hide = document.querySelectorAll(".button");
+        let hide = document.querySelectorAll('.button');
         hide.forEach(function(element) {
-          element.classList.add("hidden");
+          element.classList.add('hidden');
         })
         //unhide the selected Pokemon
-        let unhide = document.querySelectorAll(".button" + array[i]);
+        let unhide = document.querySelectorAll('.button' + array[i]);
         unhide.forEach(function(element) {
-          element.classList.remove("hidden");
+          element.classList.remove('hidden');
         })
       })
     }
   }
 
   //Search for pokemon by name in a serach bar
-  let searchInput = document.querySelector("#search-pokemon")
-  searchInput.addEventListener("input", function() {
+  let searchInput = document.querySelector('#search-pokemon')
+  searchInput.addEventListener('input', function() {
     let inputValue = searchInput.value;
-    let displayedPokemon = document.querySelectorAll(".listButton");
+    let displayedPokemon = document.querySelectorAll('.listButton');
     displayedPokemon.forEach(function(button) {
       let text = button.innerText.toUpperCase();
       if(text.startsWith(inputValue.toUpperCase())) {
         button.style.display='';
       }
       else{
-        button.style.display="none";
+        button.style.display='none';
       }
       }
     )
@@ -241,16 +241,16 @@ let pokemonRepository = (function() {
   //sets color around types of Pokemon
   function chooseButtonClass (type, element) {
     let newClass;
-    let typeArray = ["bug","dark","dragon","electric","fairy","fighting","fire","flying"
-    ,"ghost","grass","ground","ice","normal","poison", "psychic", "rock", "steel", "water"];
+    let typeArray = ['bug','dark','dragon','electric','fairy','fighting','fire','flying','ghost','grass',
+    'ground','ice','normal','poison','psychic','rock','steel','water']
     for(let i = 0; i < typeArray.length; i++) {
       if(type === typeArray[i]) {
-        newClass = type + "Button";
+        newClass = type + 'Button';
         break;
       }
     }
     element.classList.add(newClass);
-    element.classList.add("allType");
+    element.classList.add('allType');
   }
 
   // function to give access to the pokemonList outside of this IIFE
@@ -261,9 +261,9 @@ let pokemonRepository = (function() {
   //function to add event listener to pokemon buttons
   //"showDetails" function is wrapped in another function to prevent being called immediately
   function addListener(element, object) {
-    element.addEventListener("click", function() {
+    element.addEventListener('click', function() {
       showDetails(object);
-    })};
+    })}
   
   //log a pokemon to the console
   function showDetails(pokemon) {
@@ -281,23 +281,23 @@ let pokemonRepository = (function() {
     let  list = document.querySelector('.pokemon-list');
     let pokemonButton = document.createElement('button');
     pokemonButton.innerText = name;
-    pokemonButton.setAttribute("type", "button");
-    pokemonButton.setAttribute("data-bs-toggle", "modal");
-    pokemonButton.setAttribute("data-bs-target", ".pokemonModal");
+    pokemonButton.setAttribute('type', 'button');
+    pokemonButton.setAttribute('data-bs-toggle', 'modal');
+    pokemonButton.setAttribute('data-bs-target', '.pokemonModal');
     let index = pokemonList.indexOf(pokemon);
     if(index < 151) {
-      pokemonButton.classList.add("button1");
+      pokemonButton.classList.add('button1');
     } else if(index > 150 && index <= 250) {
-      pokemonButton.classList.add("button2");
+      pokemonButton.classList.add('button2');
     } else if(index > 250 && index <= 385) {
-      pokemonButton.classList.add("button3");
+      pokemonButton.classList.add('button3');
     } else if(index > 385) {
-      pokemonButton.classList.add("button4");
+      pokemonButton.classList.add('button4');
     } 
-    pokemonButton.classList.add("col");
-    pokemonButton.classList.add("listButton");
-    pokemonButton.classList.add("button");
-    pokemonButton.classList.add("hidden");
+    pokemonButton.classList.add('col');
+    pokemonButton.classList.add('listButton');
+    pokemonButton.classList.add('button');
+    pokemonButton.classList.add('hidden');
     list.appendChild(pokemonButton);
     addListener(pokemonButton, pokemon);
   }
