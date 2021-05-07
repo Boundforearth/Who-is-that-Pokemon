@@ -3,9 +3,11 @@ A Pokedex built using HTML, CSS, and JS that also loads data from and external A
 
 ## Uses
 Allow users to search for Pokemon from the first four generations 
-and select a Pokemon that they would like more information about.  
+and select a Pokemon that they would like more information about.
+
 Users may select which generation they want and may search for a 
 specific Pokemon in that generation.  
+
 Clicking on a Pokemon will open a modal showing more information about the Pokemon,
  also allowing users to see the previous ornext Pokemon in the list.
 
@@ -23,4 +25,4 @@ This project was created using the following:
 - [JavaScript Minifier](https://javascript-minifier.com/)
 
 ## API
-This project uses the PokeAPI found [here]([PokeAPI](https://pokeapi.co/api/v2/pokemon/?limit=493))
+This project uses the PokeAPI found [here](https://pokeapi.co/api/v2/pokemon/?limit=493)
