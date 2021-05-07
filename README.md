@@ -17,6 +17,7 @@ This project was created using the following:
 - HTML
 - CSS
 - JavaScript
+- Visual Studio Code 1.50.1
 - Bootstrap V5.0.0
 - W3C Validation
 - ESLint 2.1.13
