@@ -1,17 +1,17 @@
 # Who's That Pokemon!
-
-```a Pokedex built using HTML, CSS, and JS that also loads data from and external API.
+```
+a Pokedex built using HTML, CSS, and JS that also loads data from and external API.
 ```
 
 ## Uses
-
-```Allow users to search for Pokemon from the first four generations and select a Pokemon that they would like more information about.  Users may select which generation they want and may search for a specific Pokemon in that generation.  
+```
+Allow users to search for Pokemon from the first four generations and select a Pokemon that they would like more information about.  Users may select which generation they want and may search for a specific Pokemon in that generation.  
 Clicking on a Pokemon will open a modal showing more information about the Pokemon, also allowing users to see the previous ornext Pokemon in the list.
 ```
 
 ## Dependencies
-
-```This project was created useing
+```T
+his project was created useing
 
 - HTML
 - CSS
@@ -25,4 +25,6 @@ Clicking on a Pokemon will open a modal showing more information about the Pokem
 ```
 
 ## API
-``` This preoject uses the PokeAPI found [here]([PokeAPI](https://pokeapi.co/api/v2/pokemon/?limit=493))
+``` 
+This preoject uses the PokeAPI found [here]([PokeAPI](https://pokeapi.co/api/v2/pokemon/?limit=493))
+```
